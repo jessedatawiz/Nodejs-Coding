@@ -1,7 +1,0 @@
-{
-    "image": "mcr.microsoft.com/vscode/devcontainers/javascript-node:latest", // Or a specific version like "mcr.microsoft.com/vscode/devcontainers/javascript-node:16"
-    "extensions": [
-        // Any useful VS Code extensions you'd like
-    ],
-    "postCreateCommand": "npm install" // To automatically install dependencies
-}
