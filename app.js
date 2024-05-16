@@ -4,7 +4,7 @@ const express = require('express');
 const path = require('path');
 
 //import the router module
-const routerPedidos = require('./routes/pedidos');
+const routerPedidos = require('./routes/orders');
 const routerPrincipal = require('./routes/principal');
 
 // imports the database connection

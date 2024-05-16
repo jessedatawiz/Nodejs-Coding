@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 
 const MONGOBD_URI = "mongodb+srv://jesseeorodrigues:NIJ6Mys6VMOARZVA@cluster0.gtvzfxa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
+// connects to the db Order
+const Order = require('./order');
+
+// estabilshes connection to mongodb
 async function connectToDatabase() {
     try {
         const connectionString = MONGOBD_URI; 
@@ -18,4 +22,5 @@ async function connectToDatabase() {
 
 module.exports = {
     connectToDatabase,
+    Order,
 };
