@@ -7,6 +7,9 @@ const path = require('path');
 const routerPedidos = require('./routes/pedidos');
 const routerPrincipal = require('./routes/principal');
 
+// imports the database connection
+const { connectToDatabase } = require('./models/database');
+
 const app = express();
 const port = 3000;
 
@@ -18,5 +21,13 @@ app.use('/pedidos', routerPedidos);
 app.use('/', routerPrincipal);
 
 app.listen(port, () => {
+    // creates only one connection to our db
+    connectToDatabase();
+
     console.log(`server running at ${port}`);
 });
+
+
+
+
+
