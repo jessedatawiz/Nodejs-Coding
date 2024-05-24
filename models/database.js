@@ -1,5 +1,5 @@
 // database.js
-const MONGOBD_URI = "mongodb+srv://jesseeorodrigues:NIJ6Mys6VMOARZVA@cluster0.gtvzfxa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/mypizzaria"
+const MONGOBD_URI = "mongodb+srv://jesseeorodrigues:NIJ6Mys6VMOARZVA@cluster0.gtvzfxa.mongodb.net/mypizzaria"
 
 const mongoose = require('mongoose');
 
