@@ -4,8 +4,8 @@ const express = require('express');
 const path = require('path');
 
 //import the router module
-const routerPedidos = require('./routes/orders');
-const routerPrincipal = require('./routes/principal');
+const routerPedidos = require('./routes/routeOrders');
+const routerPrincipal = require('./routes/routePrincipal');
 
 // imports the database connection
 const { connectToDatabase } = require('./models/database');
@@ -17,14 +17,13 @@ const port = 3000;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use('/pedidos', routerPedidos);
+app.use('/orders', routerPedidos);
 app.use('/', routerPrincipal);
 
 app.listen(port, () => {
     // creates only one connection to our db
     connectToDatabase();
-
-    console.log(`server running at ${port}`);
+    console.log(`Server running at ${port}`);
 });
 
 

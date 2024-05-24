@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <title>Order List</title>
+  <style>
+    /* Basic styling for the table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Orders</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Client Name</th>
+        <th>Pizzas</th>
+        <th>Payment Method</th>
+        <th>Total Price</th>
+        <th>Payed?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% orders.forEach(order => { %> 
+        <tr>
+          <td><%= order.client.clientName %> <%= order.client.clientSurname %></td>
+          <td>
+            <% order.pizzas.forEach(pizza => { %>
+              <%= pizza.quantity %>x <%= pizza.pizzaSize %> <%= pizza.pizzaType %>
+            <% }) %>
+          </td>
+          <td><%= order.paymentMethod %></td>
+          <td><%= order.totalPrice %></td>
+          <td><%= order.payed ? 'Yes' : 'No' %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>

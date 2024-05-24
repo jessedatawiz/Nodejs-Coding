@@ -1,10 +1,13 @@
 const express = require('express');
-
 //creates a router
 const router = express.Router();
 
 router.get('/', (_, res) => {
-    res.send('hello world');
+    const nomeDoUsuario = "Fred";
+    res.render(
+        'principal/index', 
+        { nomeDoUsuario }
+    );
 });
 
 // exports the router module

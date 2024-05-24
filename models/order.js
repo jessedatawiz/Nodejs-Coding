@@ -1,72 +1,40 @@
-//models/pedido.js
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const Order = new Schema({
-    client: [
-        {
-            customerName: {
-                type: String,
-                required: true
-            },
-            customerSurname: {
-                type: String,
-                required: true
-            },
-            phoneNumber: {
-                type: String,
-                required: true
-            },
-            address: {
-                type: String,
-                required: true
-            }
-        }
-    ],
-    pizza: [
-        {
-            pizzaType: {
-                type: String,
-                required: true
-            },
-            pizzaSize: {
-                type: String,
-                enum: ['Small', 'Medium', 'Big', 'Extra Big'], 
-                required: true
-            },
-            pizzaPrice: {
-                type: Number,
-                required: true,
-            },
-            quantity: {
-                type: Number,
-                min: 1, 
-                default: 1
-            },
-        }
-    ],
-    orderInfo: [
-        {
-            status: {
-                type: String,
-                enum: ['Received', 'Preparing', 'Out for delivery', 'Delivered'], 
-                default: 'Received'
-            },
-            totalPrice: {
-                type: Number,
-                required: true
-            },
-            paymentMethod: {
-                type: String,
-                required: true,
-                enum: ['Debit Card', 'Credit Card', 'Cash', 'Transfer']
-            },
-            isPayed: {
-                type: Boolean,
-                default: false
-            }
-        }
-    ]
+// Define the schema for an order document
+const orderSchema = new mongoose.Schema({
+  // Information about the client
+  client: {
+    clientName: { type: String, required: true }, // Client's first name (required)
+    clientSurname: { type: String, required: true } // Client's last name (required)
+  },
+
+  // Array to store details about the pizzas ordered
+  pizzas: [{
+    pizzaType: { type: String, required: true },  // Type of pizza (e.g., Pepperoni)
+    quantity: { type: Number, required: true, min: 1 }, // How many of this pizza
+    pizzaSize: {
+      type: String,
+      enum: ['Small', 'Medium', 'Large'],  // Limited to these size choices
+      required: true
+    }
+  }],
+
+  // How the client paid for the order
+  paymentMethod: {
+    type: String,
+    enum: ['Credit Card', 'Debit Card', 'Cash'], // Limited to these options
+    required: true
+  },
+
+  // Total cost of the order
+  totalPrice: { type: Number, required: true, min: 0 }, // Must be a positive number
+
+  // Indicates if the order has been paid for
+  payed: { type: Boolean, default: false } // Initially false, updated when paid
 });
 
-module.exports = Order;
+// Create a Mongoose model based on this schema
+const Order = mongoose.model('Order', orderSchema);
+
+// Make the model available for use in other parts of your application
+module.exports = { Order };
